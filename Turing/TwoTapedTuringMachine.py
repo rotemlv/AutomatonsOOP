@@ -3,7 +3,7 @@ from Direction import *
 BLANKS_TO_APPEND = 50
 
 
-class TuringMachine:
+class TuringMachine2Tapes:
     """Store 2 tapes, first will hold the input, second is "empty"
     Delta here is of the form delta(q, a, b) = (q', a', d1, b', d2)"""
     tape1: list or None
@@ -157,7 +157,7 @@ if __name__ == '__main__':
 
     }
 
-    m = TuringMachine(lang, states, start, acc, rej, delta, tape_lang, b)
+    m = TuringMachine2Tapes(lang, states, start, acc, rej, delta, tape_lang, b)
     word = 'aabbbaaa'
     m.set_verbose_output(True)
     x = m.traverse_tape([*word], remove_tape_later=False)
