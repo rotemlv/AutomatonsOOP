@@ -25,7 +25,7 @@ class NFA(Automaton):
     def check_if_nfa_accepts_word(self, word: Iterable and Sized, initial_state=None):
         """Returns True iff the given word has been accepted by the NDFA.
         In practice: traverses ALL possible paths over the NDFA.
-        This is expensive as fuck, as in 2^n expensive"""
+        This is expensive as duck, as in 2^n expensive (worst case)"""
         assert all(letter in self.language for letter in word)
         if initial_state is None:
             initial_state = self.start_state
