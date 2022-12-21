@@ -32,10 +32,12 @@ class TuringMachine2Tapes:
         self.tape2 = [self.blank] * 2 * BLANKS_TO_APPEND
         self.tape_in = True
 
+    """Removes *and returns* the two tapes inside the TM"""
     def remove_tape(self):
-        self.tape1 = None
-        self.tape2 = None
+        output1, self.tape1 = self.tape1, None
+        output2, self.tape2 = self.tape2, None
         self.tape_in = False
+        return output1, output2
 
     def set_verbose_output(self, boolean: bool):
         self.verbose = boolean

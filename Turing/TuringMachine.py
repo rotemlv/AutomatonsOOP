@@ -28,9 +28,11 @@ class TuringMachine:
         self.tape = tape
         self.tape_in = True
 
+    """Removes *and returns* the current tape"""
     def remove_tape(self):
-        self.tape = None
+        output, self.tape = self.tape, None
         self.tape_in = False
+        return output
 
     def set_verbose_output(self, boolean: bool):
         self.verbose = boolean
