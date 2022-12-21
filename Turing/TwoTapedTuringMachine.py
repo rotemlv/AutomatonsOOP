@@ -80,15 +80,18 @@ class TuringMachine2Tapes:
         # while
         while state not in {self.acc, self.rej}:
             if self.verbose:
-                print(f"Reading: {head1 = }, head1 ->"
-                      f" {self.tape1[head1]}, {head2=}, head2 ->{self.tape2[head2]}, {state = }")
+                print(f"Reading: index(head1)={head1}, head1 ->"
+                      f" {self.tape1[head1]}, index(head2)={head2}, head2 ->{self.tape2[head2]}, "
+                      f"state = {('acc' if state == self.acc else 'rej' if state==self.rej else state)}")
             # perform op
             new_state, l1, d1, l2, d2 = self.turing_iteration(state, head1, head2)
             if self.verbose:
-                print(f"Head1: Changing to: {new_state = },"
-                      f" {l1 = }, {d1 = }")
-                print(f"Head2: Changing to: {new_state = },"
-                      f" {l2 = }, {d2 = }\n")
+                print(f"Machine changed state to "
+                      f"{('acc' if new_state == self.acc else 'rej' if new_state==self.rej else new_state)}")
+                print(f"Head1: Changing letter to:"
+                      f" {l1 = }, Moving: {d1}")
+                print(f"Head2: Changing letter to:"
+                      f" {l2 = }, Moving: {d2}\n")
             # replace tape letter with l
             self.tape1[head1] = l1
             self.tape2[head2] = l2
@@ -161,5 +164,8 @@ if __name__ == '__main__':
     word = 'aabbbaaa'
     m.set_verbose_output(True)
     x = m.traverse_tape([*word], remove_tape_later=False)
-    print(f"Tapes after run: 1: {''.join(m.tape1).strip(' ')}, 2: {''.join(m.tape2).strip(' ')}")
+    print(f"Tapes after run: 1:"
+          f" {''.join(m.tape1).strip(' ')}{''.join(['_']*3)},"
+          f" 2: "
+          f"{''.join(m.tape2).strip(' ')}{''.join(['_']*3)}")
     print(x)
